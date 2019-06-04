@@ -14,7 +14,7 @@ dig() {
 old=deeper0
 new=deeper1
 
-for i in {2..50}
+for i in {2..150}
 do
 	dig "$old" "$new" >& /dev/null
 	old="$new"
