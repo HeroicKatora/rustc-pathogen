@@ -19,13 +19,18 @@ Both currently found cases behave similarly. The main issue found was that
 remnants of old compilations would lead to quadratic build time. This can be
 verified by comparing:
 
-1. Execute `create.sh`, which adds one level of indirection and then tries to
-   compile the configuration.
+1. Checkout the branch you are interested in.
+1. Execute `create.sh`, which repeats a loop of adding one level of indirection
+   and timing the compililation of each the crate configuration.
 2. `git reset --hard && git clean -dff`
 3. Comment-out or remove the `time cargo build` line and re-execute
    `create.sh`. Issue a `time cargo build` after the script has created the
    final configuration.
-4. Note that the execution time in 1. *far* exceeds the one in the 3.
+4. Note that the execution time in 2. *far* exceeds the one in the 4.
+
+Some logs of builds on my machine can be found in `timelog` of each branch
+respectively. The `plot.sh` script filters `stdin` for lines from `time …` and
+extracts them as `(x, y)` pairs for a plotting tools.
 
 ## Consequences
 
