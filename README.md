@@ -2,6 +2,16 @@ A collection of bad scaling in cargo or rustc. Check out each branch for an
 example. Each example can be scaled to some arbitrary number to plot the
 compile time.
 
+## Usage
+
+Short instructions: This times the build and then show a plot with matplotlib
+and pyplot (you'll obviously need them installed).
+
+```
+./create.sh | tee -a time.log
+./mem.sh < time.log | ./plot.sh
+```
+
 ## Description
 
 * `hello-world` (this branch): A simple main that prints `Hello, world`
