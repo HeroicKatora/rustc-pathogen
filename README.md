@@ -8,6 +8,9 @@ Short instructions: This times the build–you'll want to manually cancel the
 first command sequence at some point–and then shows a plot with matplotlib and
 pyplot (you'll obviously need them installed).
 
+A sample of `time.log` is included so you don't have to to run the build
+manually to see the graphs.
+
 ```
 ./create.sh | tee time.log
 ./mem.sh < time.log | ./plot.sh
