@@ -1,20 +1,12 @@
 #! /bin/bash
 
 eat() {
-	new="$1"
-	mkdir $new
-	pushd $new
-	cargo init --lib
-	echo "pub fn hello_there() { println!(\"We meet again, $new\") } " > src/lib.rs
-	popd
-	echo "$new = { path = \"$new\" }" >> Cargo.toml
-	echo "pub use $new::hello_there as ${new}_there;" >> src/lib.rs
+	awk '/\}/ { for(i=0;i<100;i++) print "println!(\"Hello world\");" } { print }' < src/main.rs > src/main.alt.rs
+	mv src/main.alt.rs src/main.rs
 }
 
-for i in {0..1050}
+for i in {0..100}
 do
-	new="fatter$i"
-	eat "$new" >& /dev/null
-	# rm -r ./target
-	# time cargo build
+	eat # >& /dev/null
+	time cargo build
 done
