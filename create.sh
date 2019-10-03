@@ -8,5 +8,5 @@ eat() {
 for i in {0..100}
 do
 	eat # >& /dev/null
-	time cargo build
+	command time -v cargo build
 done

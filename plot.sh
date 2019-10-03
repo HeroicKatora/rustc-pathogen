@@ -1,2 +1,2 @@
 #! /bin/bash
-grep real | awk '{print $2}' | sed 's/0m//' | sed 's/s//' | tr "," "." | grep -n "" | tr ":" "," | awk '{printf("(%s)\n", $0)}'
+grep "User time" | awk -F ':' '{print $2}' | grep -n "" | tr ":" "," | awk '{printf("(%s)\n", $0)}'
