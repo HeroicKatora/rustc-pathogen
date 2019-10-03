@@ -4,11 +4,12 @@ compile time.
 
 ## Usage
 
-Short instructions: This times the build and then show a plot with matplotlib
-and pyplot (you'll obviously need them installed).
+Short instructions: This times the build–you'll want to manually cancel the
+first command sequence at some point–and then shows a plot with matplotlib and
+pyplot (you'll obviously need them installed).
 
 ```
-./create.sh | tee -a time.log
+./create.sh | tee time.log
 ./mem.sh < time.log | ./plot.sh
 ```
 
