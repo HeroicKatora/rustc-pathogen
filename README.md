@@ -4,6 +4,8 @@ compile time.
 
 ## Description
 
+* `hello-world` (this branch): A simple main that prints `Hello, world`
+  repeatedly by repeating the same line. Inspired by [this blog post][1].
 * `deeper`: Each iteration creates a new folder `$new`, moves the previous
   library into it and initializes within the work dir a new library target
   that depends on the inner library in `$new` and re-exports its only symbol
@@ -15,27 +17,12 @@ compile time.
 
 ## Issues
 
-Both currently found cases behave similarly. The main issue found was that
-remnants of old compilations would lead to quadratic build time. This can be
-verified by comparing:
-
-1. Checkout the branch you are interested in.
-1. Execute `create.sh`, which repeats a loop of adding one level of indirection
-   and timing the compililation of each the crate configuration.
-2. `git reset --hard && git clean -dff`
-3. Comment-out or remove the `time cargo build` line and re-execute
-   `create.sh`. Issue a `time cargo build` after the script has created the
-   final configuration.
-4. Note that the execution time in 2. *far* exceeds the one in the 4.
-
-Some logs of builds on my machine can be found in `timelog` of each branch
-respectively. The `plot.sh` script filters `stdin` for lines from `time …` and
-extracts them as `(x, y)` pairs for a plotting tools.
+I've only gotten to ~9000 prints before compilation blew 8GB of ram.
 
 ## Consequences
 
-This should not pose much headache in most day-to-day usage of `cargo`. Note
-however that some workflows may exhibit conditions more similar to the test. In
-particular, it is unclear if old compilation files affect the runtime or
-whether frequently switching branch with `git checkout` (which does not remove
-previous compilation results) has similar effects.
+Pretty bad. Hopefully this is indicative of some issue that, once fixed,
+increases compile times by a large margin all around. Since many projects have
+more than a few thousand lines of code something fishy is going on here.
+
+[1]: https://christine.website/blog/compile-stress-test-2019-10-03
